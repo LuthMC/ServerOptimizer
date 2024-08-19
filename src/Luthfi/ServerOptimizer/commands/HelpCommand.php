@@ -34,11 +34,13 @@ class HelpCommand extends Command {
 
     private function sendHelpMessage(CommandSender $sender): void {
         $prefix = $this->plugin->getConfig()->get("prefix");
-        $sender->sendMessage(TF::AQUA . $prefix . " ServerOptimizer Commands:");
+        $sender->sendMessage(TF::GRAY . TF::BOLD . "======[ServerOptimizer]======");
+        $sender->sendMessage(TF::AQUA . $prefix . " Commands:");
         $sender->sendMessage(TF::YELLOW . "/serveroptimizer help" . TF::WHITE . " - Show this help message");
         $sender->sendMessage(TF::YELLOW . "/serveroptimizer check" . TF::WHITE . " - Analyze current lag sources");
         $sender->sendMessage(TF::YELLOW . "/serveroptimizer clear" . TF::WHITE . " - Perform a quick lag cleanup");
         $sender->sendMessage(TF::YELLOW . "/serveroptimizer clearchat" . TF::WHITE . " - Clear the chat to reduce impact from spam");
         $sender->sendMessage(TF::YELLOW . "/serveroptimizer reload" . TF::WHITE . " - Reload the plugin configuration");
+        $sender->sendMessage(TF::GRAY . TF::BOLD . "======[ServerOptimizer]======");
     }
 }
