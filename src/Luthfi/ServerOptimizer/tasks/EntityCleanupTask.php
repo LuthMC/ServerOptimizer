@@ -3,8 +3,8 @@
 namespace Luthfi\ServerOptimizer\tasks;
 
 use pocketmine\scheduler\Task;
+use pocketmine\utils\TextFormat as TF;
 use Luthfi\ServerOptimizer\Main;
-use pocketmine\entity\Entity;
 
 class EntityCleanupTask extends Task {
 
@@ -14,26 +14,16 @@ class EntityCleanupTask extends Task {
         $this->plugin = $plugin;
     }
 
-    public function onRun(): void {
-        $entitiesRemoved = 0;
-        foreach ($this->plugin->getServer()->getLevels() as $level) {
-            foreach ($level->getEntities() as $entity) {
-                if (!$this->isNPC($entity) && $this->isRemovable($entity)) {
-                    $entity->close();
-                    $entitiesRemoved++;
-                }
+    public function onRun(int $currentTick) {
+        $level = $this->plugin->getServer()->getLevels()[0];
+        $count = 0;
+
+        foreach ($level->getEntities() as $entity) {
+            if (!$entity instanceof Player) {
+                $entity->close();
+                $count++;
             }
         }
-
-        $prefix = $this->plugin->getConfig()->get("prefix");
-        $this->plugin->getServer()->broadcastMessage($prefix . " Removed {$entitiesRemoved} entities.");
-    }
-
-    private function isNPC(Entity $entity): bool {
-        return false;
-    }
-
-    private function isRemovable(Entity $entity): bool {
-        return !($entity instanceof Human);
+        $this->plugin->getLogger()->info(TF::GREEN . "Cleared " . $count . " entities.");
     }
 }
