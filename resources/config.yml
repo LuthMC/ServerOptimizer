@@ -1,0 +1,37 @@
+# ServerOptimizer Configuration
+# Github: https://github.com/LuthMC/ServerOptimizer
+
+prefix: "[ServerOptimizer]"
+messages:
+  help_header: "&bServerOptimizer Commands:"
+  check: "Server Performance: TPS: {tps}, Load: {load}%, Entities: {entities}"
+  clear: "&aCleared {count} entities."
+  clearchat: "&aChat has been cleared."
+
+monitoring:
+  enabled: true
+  cpu_threshold: 85
+  ram_threshold: 80
+  tps_threshold: 18
+
+tasks:
+  entity_cleanup_interval: 300 # in seconds
+  chunk_unload_interval: 600 # in seconds
+  item_stack_merge: true
+
+messages:
+  high_cpu_alert: "Warning: CPU usage has exceeded {threshold}%!"
+  high_ram_alert: "Warning: RAM usage has exceeded {threshold}%!"
+  low_tps_alert: "Warning: TPS has dropped below {threshold}!"
+
+features:
+  clear_chat:
+    enabled: true
+  lag_check:
+    enabled: true
+  entity_cleanup:
+    enabled: true
+  chunk_unload:
+    enabled: true
+  item_stack_merge:
+    enabled: true
