@@ -4,7 +4,7 @@ namespace Luthfi\ServerOptimizer\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use Luthfi\ServerOptimizer\Main;
 
@@ -27,7 +27,7 @@ class ClearCommand extends Command {
         $count = 0;
 
         foreach ($level->getEntities() as $entity) {
-            if (!$entity instanceof Player && !$entity instanceof NPC) {
+            if (!$entity instanceof Player) {
                 $entity->close();
                 $count++;
             }
