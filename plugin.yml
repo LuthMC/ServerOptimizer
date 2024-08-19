@@ -1,0 +1,30 @@
+name: ServerOptimizer
+version: 1.0.0
+main: Luthfi\ServerOptimizer\Main
+api: 5.0.0
+author: Luthfi
+description: A plugin to optimize server performance.
+website: https://github.com/LuthMC/ServerOptimizer
+
+commands:
+  serveroptimizer:
+    aliases: [so] 
+    usage: "/serveroptimizer help"
+    permission: serveroptimizer.help
+
+permissions:
+  serveroptimizer.help:
+    description: Allows the player to view the help command.
+    default: true
+  serveroptimizer.check:
+    description: Allows the player to check server lag sources.
+    default: op
+  serveroptimizer.clear:
+    description: Allows the player to perform a lag cleanup.
+    default: op
+  serveroptimizer.clearchat:
+    description: Allows the player to clear the chat.
+    default: op
+  serveroptimizer.reload:
+    description: Allows the player to reload the plugin configuration.
+    default: op
