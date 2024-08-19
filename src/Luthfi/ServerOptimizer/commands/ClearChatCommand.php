@@ -4,17 +4,13 @@ namespace Luthfi\ServerOptimizer\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
 use pocketmine\utils\TextFormat as TF;
-use Luthfi\ServerOptimizer\Main;
+use pocketmine\Server;
 
 class ClearChatCommand extends Command {
 
-    private $plugin;
-
-    public function __construct(Main $plugin) {
+    public function __construct() {
         parent::__construct("serveroptimizer clearchat", "Clear the chat to reduce impact from spam", "/serveroptimizer clearchat", ["soclearchat"]);
-        $this->plugin = $plugin;
         $this->setPermission("serveroptimizer.clearchat");
     }
 
@@ -23,8 +19,9 @@ class ClearChatCommand extends Command {
             return false;
         }
 
+        $server = Server::getInstance();
         for ($i = 0; $i < 100; $i++) {
-            $sender->getServer()->broadcastMessage(" ");
+            $server->broadcastMessage(" ");
         }
 
         $sender->sendMessage(TF::GREEN . "Chat has been cleared.");
